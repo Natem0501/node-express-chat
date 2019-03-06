@@ -18,17 +18,40 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, './public/index.html'))
 })
 
-// on a connection event, act as follows (socket interacts with client)
-io.on('connection', (socket) => {
-  socket.on('chatMessage', (from, msg) => {  // on getting a chatMessage event
-    io.emit('chatMessage', from, msg)  // emit it to all connected clients
-  })
-  socket.on('notifyUser', (user) => {  // on getting a notifyUser event
-    io.emit('notifyUser', user)  // emit to all
-  })
-})
+// // on a connection event, act as follows (socket interacts with client)
+// io.on('connection', (socket) => {
+//   socket.on('chatMessage', (from, msg) => {  // on getting a chatMessage event
+//     io.emit('chatMessage', from, msg)  // emit it to all connected clients
+//   })
+//   socket.on('notifyUser', (user) => {  // on getting a notifyUser event
+//     io.emit('notifyUser', user)  // emit to all
+//   })
+// })
 
 server.listen(port, hostname, () => {
   // Tell the user where to find the app (use backtics with variables)
   console.log(`Server running at http://${hostname}:${port}/`)
 })
+
+
+
+const server = require('server');
+const { get, socket } = server.router;
+const { render } = server.reply;
+
+// Update everyone with the current user count
+const updateCounter = ctx => {
+  ctx.io.emit('count', Object.keys(ctx.io.sockets.sockets).length);
+};
+
+// Send the new message to everyone
+const sendMessage = ctx => {
+  ctx.io.emit('message', ctx.data);
+};
+
+server([
+  get('/', ctx => render('index.html')),
+  socket('connect', updateCounter),
+  socket('disconnect', updateCounter),
+  socket('message', sendMessage)
+]);

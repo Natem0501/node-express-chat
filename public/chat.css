@@ -8,27 +8,41 @@ body {
   font: 1.8em Helvetica, Arial;
 }
 
-form {
+/* form {
   background: #000;
   padding: 3px;
   position: fixed;
   bottom: 0;
   width: 100%;
-}
+} */
 
-form input {
+/* form input {
   border: 0;
   padding: 10px;
   margin-right: .5%;
   width: 90%;
+} */
+
+form input {
+  width: 100%;
+  font: inherit;
+  border: none;
+  position: relative;
 }
 
 form #button {
   color: #FFF;
-  background: #2D9F0B;
+  background: rgb(4, 58, 109);
+  width: 100%;
+  font: inherit;
   border: none;
-  padding: 10px;
-  width: 9%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 5px 10px;
+}
+button:hover {
+  cursor: pointer;
+  opacity: 50%;
 }
 
 #messages {
@@ -49,6 +63,63 @@ form #button {
   position: fixed;
   bottom: 42px;
   width: 100%;
+}
+
+
+main {
+  width: calc(100% - 20px);
+  max-width: 500px;
+  margin: 0 auto;
+  font-family: Helvetica, Arial, Sans, sans-serif;
+}
+
+h1, .user-count {
+  margin: 0;
+  padding: 10px 0;
+  font-size: 32px;
+}
+
+.user-count {
+  float: right;
+}
+
+.chat {
+  content: '';
+  width: 100%;
+  height: calc(100vh - 165px);
+  background: white;
+  padding: 5px 10px;
+}
+
+.chat p {
+  margin: 0 0 5px 0;
+}
+
+input, button {
+  width: 100%;
+  font: inherit;
+  background: #fff;
+  border: none;
+  margin-top: 10px;
+  padding: 5px 10px;
+}
+
+button:hover {
+  cursor: pointer;
+  background: #ddd;
+}
+
+@media all and (min-width: 500px) {
+  .chat {
+    height: calc(100vh - 140px);
+  }
+  input {
+    width: calc(100% - 160px);
+  }
+  button {
+    float: right;
+    width: 150px;
+  }
 }
 
 /* Reference: http://javabeginnerstutorial.com/javascript-2/create-simple-chat-application-using-node-js-express-js-socket-io/ */

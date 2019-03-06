@@ -6,20 +6,37 @@
   <link rel='stylesheet' href='public/chat.css' />
   <script src="/socket.io/socket.io.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://unpkg.com/cookie_js@1.2.2/cookie.min.js"></script>
+  <script src="https://unpkg.com/socket.io-client@2/dist/socket.io.slim.js"></script>
   <script src="public/chat.js"></script>
 </head>
 
 <body style="background-color: cadetblue">
 
-  <ul id="messages"></ul>
-
-  <div id="notifyUser"></div>
+  <main>
+    <header>
+      <div class="user-count">0</div>
+      <h1>Nate's Chat</h1>
+    </header>
+  
+    <section class="chat">
+      <p><strong>Nate</strong>: Hey everyone!</p>
+      <p><strong>Bob</strong>: This is an example chat</p>
+      <ul id="messages"></ul>
+      <div id="notifyUser"></div>
+    </section>
 
   <form id="chatform">
     <input type="hidden" id="user" value="" />
     <input id="m" autocomplete="off" placeholder="Type your message here.." /><input
       type="submit" id="button" value="Send" />
   </form>
+  <!-- <form>
+    <input type="text" placeholder="Say something nice" />
+    <button>Send</button>
+  </form> -->
+  </main>
 
 </body>
 
